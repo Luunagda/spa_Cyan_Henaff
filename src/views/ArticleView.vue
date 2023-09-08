@@ -1,7 +1,6 @@
 <template>
   <div class="article">
     <h1>This is an about page</h1>
-    <Article msg="Welcome to Your Vue.js App"/>
     
   </div>
 

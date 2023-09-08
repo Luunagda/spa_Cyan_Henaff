@@ -4,7 +4,7 @@
     <h1>Vos articles</h1>
     <div class="article" v-for="article in articles" :key="article.id">
       <a class="card-container">
-        <div class="lettre" :style="{ backgroundColor: circleColor }">{{ getFirstletter(article.title) }}</div>
+        <div class="lettre" :style="{ backgroundColor: getRandomColor() }">{{ getFirstletter(article.title) }}</div>
         <h2>{{ article.title }}</h2>
       </a>
     </div>
@@ -14,10 +14,9 @@
 </template>
 <style>
 .article {
-  display: flex;
-  flex-direction: row;
-
-  
+  padding: 0 2rem;
+  margin: 0 auto;
+  max-width: 1000px;
 }
 .card-container {
   display: flex;
@@ -43,14 +42,14 @@
 <script>
 // @ is an alias to /src
 
-import HelloWorld from '@/components/HelloWorld.vue'
+import Article from '@/components/Article.vue'
 import axios from 'axios'
 
 export default {
   
-  name: 'HomeView',
+  name: 'Article',
   components: {
-    HelloWorld
+    Article
   },
   data() {
     return {
@@ -61,9 +60,8 @@ export default {
     getFirstletter(title) {
       return title.charAt(0)
     },
-    generateRandomColor() {
-      const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
-      this.circleColor = randomColor;
+    getRandomColor() {
+      return '#' + Math.floor(Math.random()*16777215).toString(16);
     }
   },
   created() {
@@ -75,8 +73,7 @@ export default {
     })
     .catch(error => {
       console.log(error)
-    }),
-    this.generateRandomColor();
+    })
   }
 }
 
